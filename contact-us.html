@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Renova Projects UK — Transforming Spaces</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/css/styles.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white:      #ffffff;
+  --bg:         #f4f6f9;
+  --bg2:        #eef1f6;
+  --off-white:  #f8f8f6;
+  --near-black: #0f1923;
+  --dark:       #1c2b3a;
+  --mid:        #5a6a7a;
+  --light:      #c8d0da;
+  --rule:       rgba(15,25,35,0.08);
+
+  --yellow:  #FFD700;
+  --orange:  #F5A623;
+  --red:     #F03A2F;
+  --purple:  #C840C0;
+  --teal:    #2ECFB4;
+  --blue:    #3BA8F5;
+  --green:   #3CB554;
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--near-black);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+/* ── NAV ─────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 16px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  width: calc(100% - 64px);
+  max-width: 1280px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.9);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 4px 32px rgba(15,25,35,0.08), 0 1px 4px rgba(15,25,35,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.logo-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 26px;
+}
+.logo-bars .b {
+  width: 4px;
+  border-radius: 2px 2px 0 0;
+  animation: barBounce 3s ease-in-out infinite;
+}
+.logo-bars .b:nth-child(1){ background:var(--yellow); height:55%; animation-delay:0s; }
+.logo-bars .b:nth-child(2){ background:var(--orange); height:80%; animation-delay:0.1s; }
+.logo-bars .b:nth-child(3){ background:var(--red);    height:100%;animation-delay:0.2s; }
+.logo-bars .b:nth-child(4){ background:var(--purple); height:68%; animation-delay:0.3s; }
+.logo-bars .b:nth-child(5){ background:var(--teal);   height:48%; animation-delay:0.4s; }
+.logo-bars .b:nth-child(6){ background:var(--blue);   height:88%; animation-delay:0.5s; }
+.logo-bars .b:nth-child(7){ background:var(--green);  height:62%; animation-delay:0.6s; }
+@keyframes barBounce {
+  0%,100% { transform: scaleY(1); }
+  50%      { transform: scaleY(0.8); }
+}
+.logo-text {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: -0.03em;
+  color: var(--near-black);
+}
+.logo-text span { color: var(--blue); }
+
+
+
+    /* ── PAGE HERO (contact) ─────────────────────── */
+    .page-hero {
+      padding-top: 120px;
+      padding-bottom: 72px;
+      background: var(--off-white);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero-bars {
+      position: absolute; top: 0; right: 0;
+      width: 40%; height: 100%;
+      display: flex; align-items: stretch; gap: 0;
+      pointer-events: none; z-index: 1;
+    }
+    .ph-bar {
+      flex: 1; opacity: 0.07;
+      animation: heroBars 4s ease-in-out infinite alternate;
+    }
+    .ph-bar:nth-child(1)  { background: var(--blue);   animation-delay: 0s; }
+    .ph-bar:nth-child(2)  { background: var(--teal);   animation-delay: 0.15s; }
+    .ph-bar:nth-child(3)  { background: var(--green);  animation-delay: 0.3s; }
+    .ph-bar:nth-child(4)  { background: var(--yellow); animation-delay: 0.45s; }
+    .ph-bar:nth-child(5)  { background: var(--orange); animation-delay: 0.6s; }
+    .ph-bar:nth-child(6)  { background: var(--red);    animation-delay: 0.75s; }
+    .ph-bar:nth-child(7)  { background: var(--purple); animation-delay: 0.9s; }
+    .ph-bar:nth-child(8)  { background: var(--blue);   animation-delay: 1.05s; }
+    @keyframes heroBars { from { transform: scaleY(0.95); } to { transform: scaleY(1.05); } }
+
+    .page-hero-inner {
+      position: relative; z-index: 2;
+      max-width: 1280px; margin: 0 auto; padding: 0 48px;
+    }
+    .page-hero-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--white); border: 1px solid var(--rule);
+      border-radius: 100px; padding: 8px 16px 8px 8px;
+      font-size: 0.72rem; font-weight: 600; color: var(--mid);
+      margin-bottom: 28px; animation: fadeUp 0.6s ease both;
+    }
+    .page-hero-pill-dot {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      display: grid; place-items: center; font-size: 0.6rem; color: white;
+    }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      font-weight: 700; letter-spacing: -0.02em; line-height: 1.05;
+      margin-bottom: 20px; animation: fadeUp 0.6s ease 0.1s both;
+    }
+    .page-hero h1 em {
+      font-style: italic; font-weight: 400;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .page-hero-sub {
+      font-size: 1rem; line-height: 1.75; color: var(--mid);
+      max-width: 520px; animation: fadeUp 0.6s ease 0.2s both;
+    }
+
+    /* ── CONTACT LAYOUT ──────────────────────────── */
+    .contact-page-wrap {
+      max-width: 1280px; margin: 0 auto; padding: 72px 48px;
+    }
+    .contact-page-grid {
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: start;
+    }
+
+    /* Form card */
+    .contact-form-card {
+      background: var(--white); border-radius: var(--radius-xl);
+      padding: 52px 56px;
+      box-shadow: 0 4px 24px rgba(15,25,35,0.06);
+    }
+    .contact-form-card .eyebrow { color: var(--blue); margin-bottom: 10px; }
+    .contact-form-card .section-h2 { margin-bottom: 8px; }
+    .form-intro { font-size: 0.88rem; line-height: 1.8; color: var(--mid); margin-bottom: 36px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+    .form-group label {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--mid);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.88rem; font-weight: 500;
+      color: var(--near-black);
+      background: var(--bg);
+      border: 1.5px solid transparent;
+      border-radius: var(--radius-md);
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue); background: var(--white);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group select { cursor: pointer; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a6a7a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center;
+    }
+    .form-submit {
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.88rem; font-weight: 700;
+      color: var(--white); background: var(--near-black);
+      border: none; border-radius: 100px;
+      padding: 16px 36px; cursor: pointer; width: 100%;
+      transition: background 0.25s, transform 0.2s;
+      margin-top: 8px;
+    }
+    .form-submit:hover { background: var(--blue); transform: translateY(-2px); }
+    .form-note {
+      font-size: 0.72rem; color: var(--mid); text-align: center;
+      margin-top: 14px; line-height: 1.6;
+    }
+
+    /* Right column */
+    .contact-aside { display: flex; flex-direction: column; gap: 16px; }
+
+    .contact-detail-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 24px 28px; box-shadow: 0 2px 12px rgba(15,25,35,0.05);
+      display: flex; align-items: center; gap: 16px; transition: transform 0.2s;
+    }
+    .contact-detail-card:hover { transform: translateX(4px); }
+    .cdc-icon {
+      width: 48px; height: 48px; border-radius: var(--radius-sm);
+      display: grid; place-items: center; font-size: 1.2rem; flex-shrink: 0;
+    }
+    .cdc-label {
+      font-size: 0.62rem; font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--mid); margin-bottom: 4px;
+    }
+    .cdc-value { font-size: 0.9rem; font-weight: 700; color: var(--near-black); line-height: 1.4; }
+    .cdc-value a { color: inherit; text-decoration: none; }
+    .cdc-value a:hover { color: var(--blue); }
+
+    .contact-map-card {
+      background: var(--white); border-radius: var(--radius-xl);
+      overflow: hidden; box-shadow: 0 2px 12px rgba(15,25,35,0.05);
+    }
+    .contact-map-placeholder {
+      height: 200px; background: var(--bg2);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 8px;
+      font-size: 0.8rem; font-weight: 700; color: var(--mid);
+    }
+    .contact-map-placeholder .map-pin { font-size: 2rem; }
+    .contact-map-footer {
+      padding: 18px 24px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .contact-map-address { font-size: 0.8rem; font-weight: 600; color: var(--near-black); line-height: 1.5; }
+    .contact-map-address small { display: block; color: var(--mid); font-weight: 500; font-size: 0.72rem; }
+    .contact-map-link {
+      font-size: 0.75rem; font-weight: 700; color: var(--blue);
+      text-decoration: none; white-space: nowrap;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .contact-map-link:hover { text-decoration: underline; }
+
+    /* Testimonial strip */
+    .contact-test-strip {
+      background: var(--near-black); border-radius: var(--radius-xl);
+      padding: 32px 36px; display: flex; align-items: center; gap: 24px;
+      position: relative; overflow: hidden;
+    }
+    .contact-test-strip::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--teal), var(--green));
+    }
+    .cts-score {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem; font-weight: 700; color: white; line-height: 1;
+      flex-shrink: 0;
+    }
+    .cts-stars { display: flex; gap: 3px; margin-bottom: 6px; }
+    .cts-star {
+      width: 14px; height: 14px; background: var(--yellow);
+      clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+    }
+    .cts-label { font-size: 0.68rem; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; }
+    .cts-divider { width: 1px; align-self: stretch; background: rgba(255,255,255,0.1); flex-shrink: 0; }
+    .cts-quote { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-style: italic; color: rgba(255,255,255,0.85); line-height: 1.65; }
+    .cts-author { font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.4); margin-top: 10px; }
+
+    /* Coverage band */
+    .coverage-band {
+      background: var(--white); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+      padding: 20px 48px;
+    }
+    .coverage-band-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+    }
+    .coverage-label {
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--mid); flex-shrink: 0;
+    }
+    .coverage-items { display: flex; gap: 10px; flex-wrap: wrap; }
+    .coverage-pill {
+      font-size: 0.72rem; font-weight: 700; padding: 6px 14px;
+      border-radius: 100px; background: var(--bg); color: var(--mid);
+    }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    footer { background: var(--near-black); padding: 40px 32px; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo .logo-text { color: white; }
+    .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.75rem; font-weight: 600; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.85); }
+    .footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.25); }
+
+    /* ── ANIMATIONS ─────────────────────────────── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; }
+
+    /* ── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 1024px) {
+      nav { width: calc(100% - 40px); }
+      .contact-page-grid { grid-template-columns: 1fr; }
+      .contact-form-card { padding: 44px 40px; }
+      .page-hero-inner { padding: 0 36px; }
+      .contact-page-wrap { padding: 64px 36px; }
+    }
+    @media (max-width: 768px) {
+      nav { width: calc(100% - 24px); padding: 12px 14px; }
+      .nav-links, .nav-phone, .nav-cta { display: none; }
+      .nav-burger { display: inline-flex; }
+      .page-hero { padding-top: 100px; padding-bottom: 52px; }
+      .page-hero-inner { padding: 0 22px; }
+      .page-hero h1 { font-size: 2.4rem; }
+      .contact-page-wrap { padding: 48px 22px; }
+      .contact-form-card { padding: 32px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-test-strip { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .cts-divider { display: none; }
+      .coverage-band { padding: 20px 22px; }
+      footer { padding: 34px 22px; }
+    }
+    @media (max-width: 480px) {
+      .page-hero h1 { font-size: 2rem; }
+    }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="logo-bars">
+      <div class="b"></div><div class="b"></div><div class="b"></div>
+      <div class="b"></div><div class="b"></div><div class="b"></div>
+      <div class="b"></div>
+    </div>
+    <span class="logo-text">Renova <span>UK</span></span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li class="nav-has-dropdown">
+      <button class="nav-dropdown-toggle">Services <span class="nav-dropdown-chevron">&#9660;</span></button>
+      <ul class="nav-submenu">
+        <li>
+          <a href="/office-refurbishment.html">
+            <div class="nav-submenu-icon" style="background:rgba(59,168,245,0.1)">🏗️</div>
+            <div class="nav-submenu-label"><span>Office Refurbishment</span><small>Fit-outs &amp; workspace upgrades</small></div>
+          </a>
+        </li>
+        <li><div class="nav-submenu-divider"></div></li>
+        <li>
+          <a href="/office-dilapidations.html">
+            <div class="nav-submenu-icon" style="background:rgba(200,64,192,0.1)">📋</div>
+            <div class="nav-submenu-label"><span>Office Dilapidations</span><small>Lease-end works &amp; reinstatement</small></div>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li><a href="/projects.html">Projects</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+    <li><a href="/contact-us/" class="active">Contact</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <a href="tel:02033939600" class="nav-phone">020 3393 9600</a>
+    <a href="#contact-form" class="nav-cta">Book Consultation</a>
+    <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="nav-mobile" id="navMobile">
+    <a href="/">Home <small>Top</small></a>
+    <a href="#services">Services <small>What we do</small></a>
+    <a href="/office-refurbishment.html" style="padding-left:28px;font-size:0.85rem">Office Refurbishment <small>Fit-outs</small></a>
+    <a href="/office-dilapidations.html" style="padding-left:28px;font-size:0.85rem">Office Dilapidations <small>Lease-end</small></a>
+    <a href="/projects.html">Projects <small>Recent work</small></a>
+    <a href="/blog.html">Blog <small>News &amp; insights</small></a>
+    <a href="/contact-us/">Contact <small>Get in touch</small></a>
+    <a href="tel:02033939600" class="nav-mobile-phone">Call 020 3393 9600 <small>Tap to call</small></a>
+    <a href="#contact-form" class="nav-mobile-cta">Book Consultation <small>Fast response</small></a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bars">
+    <div class="ph-bar"></div><div class="ph-bar"></div><div class="ph-bar"></div>
+    <div class="ph-bar"></div><div class="ph-bar"></div><div class="ph-bar"></div>
+    <div class="ph-bar"></div><div class="ph-bar"></div>
+  </div>
+  <div class="page-hero-inner">
+    <div class="page-hero-pill">
+      <div class="page-hero-pill-dot">✦</div>
+      Free, no-obligation consultation
+    </div>
+    <h1>Get in touch with<br /><em>our team</em></h1>
+    <p class="page-hero-sub">Whether you need a quote, have a question about an upcoming project, or want to discuss a long-term maintenance contract — we're ready to help.</p>
+  </div>
+</section>
+
+<!-- COVERAGE BAND -->
+<div class="coverage-band">
+  <div class="coverage-band-inner">
+    <span class="coverage-label">We cover</span>
+    <div class="coverage-items">
+      <span class="coverage-pill">London</span>
+      <span class="coverage-pill">Kent</span>
+      <span class="coverage-pill">Surrey</span>
+      <span class="coverage-pill">Essex</span>
+      <span class="coverage-pill">South East</span>
+      <span class="coverage-pill">Nationwide</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTACT SECTION -->
+<div class="contact-page-wrap" id="contact-form">
+  <div class="contact-page-grid">
+
+    <!-- FORM -->
+    <div class="contact-form-card reveal">
+      <p class="eyebrow">Send us a message</p>
+      <h2 class="section-h2" style="margin-bottom:8px">Tell us about<br /><em>your project</em></h2>
+      <p class="form-intro">Fill in the form and a member of our team will be in touch within one business day.</p>
+
+      <form action="#" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first_name" placeholder="Jane" required />
+          </div>
+          <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last_name" placeholder="Smith" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="jane@company.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="07700 900 000" />
+        </div>
+
+        <div class="form-group">
+          <label for="service">Service Required</label>
+          <select id="service" name="service">
+            <option value="" disabled selected>Select a service…</option>
+            <option>Office Fit-Out &amp; Refurbishment</option>
+            <option>Office Dilapidations</option>
+            <option>Planned Maintenance</option>
+            <option>Reactive Maintenance</option>
+            <option>Strip-Out</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Tell us more</label>
+          <textarea id="message" name="message" placeholder="Briefly describe your project, location, and timescale…"></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Send Message →</button>
+        <p class="form-note">We aim to respond within one business day. No spam, ever.</p>
+      </form>
+    </div>
+
+    <!-- ASIDE -->
+    <div class="contact-aside">
+
+      <!-- Detail cards -->
+      <div class="contact-detail-card reveal">
+        <div class="cdc-icon" style="background:rgba(59,168,245,0.1)">📞</div>
+        <div>
+          <div class="cdc-label">Phone</div>
+          <div class="cdc-value"><a href="tel:02033939600">020 3393 9600</a></div>
+        </div>
+      </div>
+
+      <div class="contact-detail-card reveal d1">
+        <div class="cdc-icon" style="background:rgba(46,207,180,0.1)">✉️</div>
+        <div>
+          <div class="cdc-label">Email</div>
+          <div class="cdc-value"><a href="mailto:office@renovauk.com">office@renovauk.com</a></div>
+        </div>
+      </div>
+
+      <div class="contact-detail-card reveal d2">
+        <div class="cdc-icon" style="background:rgba(245,166,35,0.1)">🕐</div>
+        <div>
+          <div class="cdc-label">Office Hours</div>
+          <div class="cdc-value">Mon – Fri, 8:00am – 5:30pm</div>
+        </div>
+      </div>
+
+      <!-- Map card -->
+      <div class="contact-map-card reveal">
+        <div class="contact-map-placeholder">
+          <span class="map-pin">📍</span>
+          <span>Genesis House, Westerham, Kent</span>
+        </div>
+        <div class="contact-map-footer">
+          <div class="contact-map-address">
+            Genesis House, Westerham<br />
+            <small>Kent TN16 1AH</small>
+          </div>
+          <a href="https://maps.google.com/?q=Genesis+House+Westerham+Kent+TN16+1AH" target="_blank" class="contact-map-link">
+            Directions →
+          </a>
+        </div>
+      </div>
+
+      <!-- Testimonial strip -->
+      <div class="contact-test-strip reveal">
+        <div>
+          <div class="cts-stars">
+            <div class="cts-star"></div><div class="cts-star"></div><div class="cts-star"></div>
+            <div class="cts-star"></div><div class="cts-star"></div>
+          </div>
+          <div class="cts-score">5.0</div>
+          <div class="cts-label">Client Rating</div>
+        </div>
+        <div class="cts-divider"></div>
+        <div>
+          <p class="cts-quote">"Renova consistently deliver a high standard of quality and attention to detail — and the results speak for themselves."</p>
+          <p class="cts-author">Facilities Director, Long-term Partner Client</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="logo-bars" style="height:22px">
+        <div class="b"></div><div class="b"></div><div class="b"></div>
+        <div class="b"></div><div class="b"></div><div class="b"></div>
+        <div class="b"></div>
+      </div>
+      <span class="logo-text">Renova <span>UK</span></span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/office-refurbishment.html">Refurbishment</a></li>
+      <li><a href="/office-dilapidations.html">Dilapidations</a></li>
+      <li><a href="/projects.html">Projects</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/contact-us/">Contact</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 Renova Projects UK Ltd</span>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  const nav = document.querySelector('nav');
+  const burger = document.querySelector('.nav-burger');
+
+  function closeNav() {
+    nav.classList.remove('nav-open');
+    burger?.setAttribute('aria-expanded', 'false');
+    burger?.setAttribute('aria-label', 'Open menu');
+  }
+  burger?.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('nav-open');
+    burger.setAttribute('aria-expanded', String(isOpen));
+    burger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  });
+  document.getElementById('navMobile')?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+  document.addEventListener('click', e => { if (!nav.classList.contains('nav-open')) return; if (!nav.contains(e.target)) closeNav(); });
+</script>
+<script src="/assets/js/includes.js"></script>
+
+</body>
+</html>

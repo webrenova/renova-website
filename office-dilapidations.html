@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Office Dilapidations — Renova Projects UK</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/css/styles.css" />
+<style>
+/* =============================================================
+   OFFICE DILAPIDATIONS PAGE — page-specific styles
+   Shared styles (nav, buttons, hero, footer, etc.) → styles.css
+   ============================================================= */
+
+/* ── Hero bar colours (purple / orange / red theme) ── */
+.h-bar:nth-child(1)  { background: var(--purple); height: 45%; }
+.h-bar:nth-child(2)  { background: var(--orange); height: 68%; }
+.h-bar:nth-child(3)  { background: var(--red);    height: 90%; }
+.h-bar:nth-child(4)  { background: var(--purple); height: 55%; }
+.h-bar:nth-child(5)  { background: var(--orange); height: 75%; }
+.h-bar:nth-child(6)  { background: var(--red);    height:100%; }
+.h-bar:nth-child(7)  { background: var(--purple); height: 60%; }
+.h-bar:nth-child(8)  { background: var(--orange); height: 40%; }
+.h-bar:nth-child(9)  { background: var(--red);    height: 82%; }
+.h-bar:nth-child(10) { background: var(--purple); height: 50%; }
+.h-bar:nth-child(11) { background: var(--orange); height: 70%; }
+.h-bar:nth-child(12) { background: var(--red);    height: 95%; }
+
+/* ── Services cards ── */
+.dilap-services-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+.ds-card { background: var(--white); border-radius: var(--radius-xl); padding: 36px 32px; box-shadow: 0 2px 12px rgba(15,25,35,0.05); transition: transform .25s, box-shadow .25s; border: 1.5px solid transparent; }
+.ds-card:hover { transform: translateY(-5px); box-shadow: 0 20px 48px rgba(15,25,35,0.1); border-color: rgba(200,64,192,0.2); }
+.ds-icon  { font-size: 1.6rem; margin-bottom: 16px; display: block; }
+.ds-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+.ds-desc  { font-size: 0.8rem; line-height: 1.75; color: var(--mid); }
+
+/* ── Challenges section ── */
+.challenges-wrap  { background: var(--bg2); padding: 80px 0; }
+.challenges-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+.challenges-grid  { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 40px; }
+.challenge-card   { background: var(--white); border-radius: var(--radius-xl); padding: 32px; box-shadow: 0 2px 12px rgba(15,25,35,0.05); }
+.challenge-problem { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--red); margin-bottom: 8px; }
+.challenge-title   { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
+.challenge-divider { height: 1px; background: var(--rule); margin: 14px 0; }
+.challenge-solution-label { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--teal); margin-bottom: 8px; }
+.challenge-solution { font-size: 0.78rem; line-height: 1.7; color: var(--mid); }
+
+/* ── Cost control two-column ── */
+.cost-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+.cost-visual { background: linear-gradient(160deg,#3a1060,var(--purple)); border-radius: var(--radius-xl); padding: 40px; min-height: 280px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden; }
+.cost-visual-deco { position: absolute; bottom: 0; right: 0; display: flex; align-items: flex-end; gap: 6px; padding: 0 16px; height: 60%; opacity: .14; }
+.cvd { width: 10px; border-radius: 5px 5px 0 0; background: white; }
+.cost-visual h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: white; position: relative; }
+.cost-visual p  { font-size: 0.8rem; color: rgba(255,255,255,.65); margin-top: 8px; line-height: 1.7; position: relative; }
+.cost-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.cost-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.84rem; }
+.cost-list .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--purple); flex-shrink: 0; margin-top: 5px; }
+.cost-list strong { display: block; font-weight: 700; margin-bottom: 2px; }
+.cost-list span { color: var(--mid); font-size: 0.78rem; line-height: 1.6; }
+
+/* ── Process (dark background) ── */
+.process-wrap  { background: var(--near-black); padding: 80px 0; }
+.process-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+.process-grid  { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 40px; }
+.process-step  { padding: 36px 32px; border-radius: var(--radius-xl); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); }
+.process-num   { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: rgba(255,255,255,.07); line-height: 1; margin-bottom: 16px; }
+.process-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: white; margin-bottom: 12px; }
+.process-desc  { font-size: 0.8rem; line-height: 1.75; color: rgba(255,255,255,.45); }
+
+/* ── Why choose us cards ── */
+.why-wrap  { padding: 80px 0; background: var(--bg2); }
+.why-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+.why-grid  { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 40px; }
+.why-card  { background: var(--white); border-radius: var(--radius-lg); padding: 28px; box-shadow: 0 2px 10px rgba(15,25,35,0.05); }
+.why-icon  { font-size: 1.4rem; margin-bottom: 12px; display: block; }
+.why-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 6px; }
+.why-desc  { font-size: 0.78rem; line-height: 1.7; color: var(--mid); }
+
+/* ── Benefits strip ── */
+.benefits-strip { background: linear-gradient(135deg, var(--purple) 0%, var(--red) 100%); padding: 48px 32px; }
+.benefits-strip-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; }
+.bs-item { text-align: center; }
+.bs-num   { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: white; line-height: 1; margin-bottom: 6px; }
+.bs-label { font-size: 0.75rem; font-weight: 600; color: rgba(255,255,255,.65); line-height: 1.4; }
+
+/* ── FAQ ── */
+.faq-wrap  { padding: 80px 32px; max-width: 860px; margin: 0 auto; }
+.faq-item  { border-bottom: 1px solid var(--rule); padding: 24px 0; cursor: pointer; }
+.faq-q     { font-size: .92rem; font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.faq-chevron { font-size: .7rem; color: var(--mid); transition: transform .2s; flex-shrink: 0; }
+.faq-item.open .faq-chevron { transform: rotate(180deg); }
+.faq-a  { font-size: .82rem; line-height: 1.8; color: var(--mid); max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .25s ease; }
+.faq-item.open .faq-a { max-height: 200px; padding-top: 14px; }
+
+/* ── Responsive tweaks ── */
+@media (max-width: 1024px) {
+  .dilap-services-grid { grid-template-columns: 1fr; }
+  .challenges-grid { grid-template-columns: 1fr 1fr; }
+  .cost-grid { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr 1fr; }
+  .why-grid { grid-template-columns: 1fr 1fr; }
+  .benefits-strip-inner { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 768px) {
+  .challenges-grid { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .benefits-strip-inner { grid-template-columns: repeat(2,1fr); gap: 20px; }
+  .faq-wrap { padding: 60px 22px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="logo-bars">
+      <div class="b"></div><div class="b"></div><div class="b"></div>
+      <div class="b"></div><div class="b"></div><div class="b"></div>
+      <div class="b"></div>
+    </div>
+    <span class="logo-text">Renova <span>UK</span></span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+        <li class="nav-has-dropdown">
+      <button class="nav-dropdown-toggle">
+        Services <span class="nav-dropdown-chevron">▼</span>
+      </button>
+      <div class="nav-dropdown">
+        <a href="/office-refurbishment.html" class="nav-dropdown-item">
+          <div class="nav-dropdown-icon" style="background:rgba(59,168,245,0.1)">🏗️</div>
+          <div class="nav-dropdown-label">
+            <span>Office Refurbishment</span>
+            <small>Fit-outs &amp; workspace upgrades</small>
+          </div>
+        </a>
+        <a href="/office-dilapidations.html" class="nav-dropdown-item">
+          <div class="nav-dropdown-icon" style="background:rgba(200,64,192,0.1)">📋</div>
+          <div class="nav-dropdown-label">
+            <span>Office Dilapidations</span>
+            <small>Lease-end works &amp; reinstatement</small>
+          </div>
+        </a>
+        <div class="nav-dropdown-divider"></div>
+        <a href="/services" class="nav-dropdown-item">
+          <div class="nav-dropdown-icon" style="background:rgba(46,207,180,0.1)">🔧</div>
+          <div class="nav-dropdown-label">
+            <span>All Services</span>
+            <small>Maintenance, repairs &amp; more</small>
+          </div>
+        </a>
+      </div>
+    </li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/contact-us">Contact</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <a href="tel:02033939600" class="nav-phone">020 3393 9600</a>
+    <a href="#contact" class="nav-cta">Book Consultation</a>
+    <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="nav-mobile" id="navMobile">
+    <a href="/">Home <small>Back to site</small></a>
+    <a href="#what-are">What Are Dilapidations <small>Explained</small></a>
+    <a href="#our-services">Our Services <small>What's included</small></a>
+    <a href="#process">Our Process <small>How it works</small></a>
+    <a href="#why-choose">Why Renova <small>Our promise</small></a>
+    <a href="#contact">Contact <small>Get in touch</small></a>
+    <a href="tel:02033939600" class="nav-mobile-phone">Call 020 3393 9600 <small>Tap to call</small></a>
+    <a href="#contact" class="nav-mobile-cta">Book Consultation <small>Fast response</small></a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bars-deco">
+    <div class="h-bar"></div><div class="h-bar"></div><div class="h-bar"></div>
+    <div class="h-bar"></div><div class="h-bar"></div><div class="h-bar"></div>
+    <div class="h-bar"></div><div class="h-bar"></div><div class="h-bar"></div>
+    <div class="h-bar"></div><div class="h-bar"></div><div class="h-bar"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-breadcrumb">
+      <a href="/">Home</a>
+      <span class="sep">›</span>
+      <a href="/services">Services</a>
+      <span class="sep">›</span>
+      <span>Office Dilapidations</span>
+    </div>
+
+    <div class="hero-pill">
+      <div class="hero-pill-dot">✦</div>
+      NAFDI Members — Lease Exit Specialists
+    </div>
+
+    <h1 class="hero-h1">
+      Office<br />
+      <span class="line2">Dilapidations</span>
+    </h1>
+
+    <p class="hero-sub">
+      End-of-lease works delivered efficiently, cost-effectively, and without the stress. We protect your property and your budget — working with landlords and tenants across the UK.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Book a Consultation</a>
+      <a href="#our-services" class="btn-secondary">See what's included <span>→</span></a>
+    </div>
+  </div>
+
+  <div class="hero-trust">
+    <span class="trust-label">We support</span>
+    <div class="trust-divider"></div>
+    <div class="trust-items">
+      <span class="trust-item">COMMERCIAL TENANTS</span>
+      <span class="trust-item">LANDLORDS</span>
+      <span class="trust-item">FACILITIES MANAGERS</span>
+      <span class="trust-item">CHARTERED SURVEYORS</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="m-dot" style="background:var(--purple)"></span>Strip-Out</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--orange)"></span>Reinstatement</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--red)"></span>Structural Repairs</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--purple)"></span>Lease Compliance</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--orange)"></span>Flooring Reinstatement</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--red)"></span>Partition Removal</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--purple)"></span>Cosmetic Repairs</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--orange)"></span>Dilapidation Surveys</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--red)"></span>Redecoration</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--purple)"></span>Lease Handover</span>
+    <!-- dupe -->
+    <span class="marquee-item"><span class="m-dot" style="background:var(--purple)"></span>Strip-Out</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--orange)"></span>Reinstatement</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--red)"></span>Structural Repairs</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--purple)"></span>Lease Compliance</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--orange)"></span>Flooring Reinstatement</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--red)"></span>Partition Removal</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--purple)"></span>Cosmetic Repairs</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--orange)"></span>Dilapidation Surveys</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--red)"></span>Redecoration</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--purple)"></span>Lease Handover</span>
+  </div>
+</div>
+
+<!-- WHAT ARE DILAPIDATIONS -->
+<div class="explainer-wrap" id="what-are">
+  <div class="explainer-inner">
+    <div class="explainer-visual reveal">
+      <div class="exp-deco">
+        <div class="ed" style="height:60%;width:12px"></div>
+        <div class="ed" style="height:85%;width:12px"></div>
+        <div class="ed" style="height:100%;width:12px"></div>
+        <div class="ed" style="height:72%;width:12px"></div>
+        <div class="ed" style="height:50%;width:12px"></div>
+        <div class="ed" style="height:90%;width:12px"></div>
+        <div class="ed" style="height:65%;width:12px"></div>
+      </div>
+      <div class="exp-badge">📋 Schedule of Dilapidations</div>
+      <div class="exp-visual-h">Lease-end obligations,<br />clearly managed</div>
+      <p class="exp-visual-p">Repairs, removals, and reinstatement — we handle every obligation so you can exit cleanly and confidently.</p>
+    </div>
+
+    <div class="explainer-content reveal d1">
+      <p class="eyebrow" style="color:var(--purple)">What Are Dilapidations?</p>
+      <h2 class="section-h2">Understanding your<br /><em>lease-end obligations</em></h2>
+      <p class="explainer-body">Office dilapidations are the repairs, removals, and reinstatement works a tenant must complete to return a leased commercial space to its agreed condition when the lease ends. These obligations are defined in your lease and often documented in a schedule of dilapidations prepared by a chartered surveyor.</p>
+      <div class="explainer-note">
+        <strong>NAFDI Members:</strong> Renova Projects UK holds NAFDI membership, recognising our expertise in commercial dilapidations and reinstatement works — helping you close leases cleanly and efficiently.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OUR SERVICES -->
+<div class="services-bg" id="our-services">
+  <div class="section">
+    <div class="section-header reveal">
+      <div>
+        <p class="eyebrow" style="color:var(--purple)">What's Included</p>
+        <h2 class="section-h2">A complete suite of<br /><em>dilapidation services</em></h2>
+      </div>
+    </div>
+
+    <div class="svc-grid">
+      <div class="svc-card reveal">
+        <div class="svc-bar"></div>
+        <div class="svc-icon">📜</div>
+        <div class="svc-title">Lease Compliance</div>
+        <p class="svc-desc">Full compliance with lease terms and the RICS dilapidations protocol — ensuring every obligation is met accurately and efficiently, avoiding costly disputes.</p>
+      </div>
+      <div class="svc-card reveal d1">
+        <div class="svc-bar"></div>
+        <div class="svc-icon">🏗️</div>
+        <div class="svc-title">End-of-Lease Strip-Out</div>
+        <p class="svc-desc">Safe, professional removal of all tenant installations — including partitions, raised floors, suspended ceilings, and data infrastructure — back to base condition.</p>
+      </div>
+      <div class="svc-card reveal d2">
+        <div class="svc-bar"></div>
+        <div class="svc-icon">🔧</div>
+        <div class="svc-title">Structural & Cosmetic Repairs</div>
+        <p class="svc-desc">All structural and cosmetic repair works required under your schedule of dilapidations — from plasterwork and joinery to mechanical and electrical making-good.</p>
+      </div>
+      <div class="svc-card reveal d3">
+        <div class="svc-bar"></div>
+        <div class="svc-icon">✨</div>
+        <div class="svc-title">Reinstatement of Finishes</div>
+        <p class="svc-desc">Reinstatement of partitions, flooring, ceilings, and decorative finishes to the standard required by your lease — delivered on time and within budget.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHALLENGES -->
+<div class="challenges-wrap" id="challenges">
+  <div class="challenges-inner">
+    <div class="section-header reveal">
+      <div>
+        <p class="eyebrow" style="color:var(--red)">Common Challenges</p>
+        <h2 class="section-h2">Dilapidation problems —<br /><em>and how we solve them</em></h2>
+      </div>
+    </div>
+
+    <div class="challenges-grid">
+      <div class="challenge-card reveal">
+        <div class="challenge-problem">Challenge</div>
+        <div class="challenge-h">Disputed scope of repairs</div>
+        <div class="challenge-divider"></div>
+        <div class="challenge-solution-label">Our solution</div>
+        <p class="challenge-solution">We conduct thorough dilapidation surveys to confirm the validity of every item listed in the schedule, giving you a clear, defensible position and reducing the risk of costly disputes.</p>
+      </div>
+      <div class="challenge-card reveal d1">
+        <div class="challenge-problem">Challenge</div>
+        <div class="challenge-h">Unexpected costs</div>
+        <div class="challenge-divider"></div>
+        <div class="challenge-solution-label">Our solution</div>
+        <p class="challenge-solution">Transparent costings and precise scope of works are prepared upfront. Our proactive management ensures every task aligns with your lease obligations — no surprises, no hidden charges.</p>
+      </div>
+      <div class="challenge-card reveal d2">
+        <div class="challenge-problem">Challenge</div>
+        <div class="challenge-h">Business disruption during works</div>
+        <div class="challenge-divider"></div>
+        <div class="challenge-solution-label">Our solution</div>
+        <p class="challenge-solution">We plan and phase all works to minimise disruption — delivering a seamless handover that allows landlords to re-let quickly and tenants to exit without complications.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COST CONTROL -->
+<div class="cost-wrap" id="cost-control">
+  <div class="cost-inner">
+    <div class="cost-content reveal">
+      <p class="eyebrow" style="color:var(--orange)">Cost Control</p>
+      <h2 class="section-h2">Keeping dilapidation costs<br /><em>under control</em></h2>
+      <p class="cost-body">Unexpected dilapidation costs can derail budgets and relationships. We help you avoid surprises with precise surveys, a clear scope of works, and fully transparent quotations at every stage.</p>
+
+      <div class="cost-points">
+        <div class="cost-point">
+          <div class="cost-point-dot" style="background:var(--purple)">1</div>
+          Precise surveys that validate your schedule of dilapidations
+        </div>
+        <div class="cost-point">
+          <div class="cost-point-dot" style="background:var(--orange)">2</div>
+          Clear scope of works agreed before any activity begins
+        </div>
+        <div class="cost-point">
+          <div class="cost-point-dot" style="background:var(--red)">3</div>
+          Fully transparent quotations — no hidden extras
+        </div>
+        <div class="cost-point">
+          <div class="cost-point-dot" style="background:var(--purple)">4</div>
+          Exceptional value without compromising quality
+        </div>
+      </div>
+
+      <a href="#contact" class="btn-dark">Get a Transparent Quote →</a>
+    </div>
+
+    <div class="reveal d1">
+      <div class="cost-visual">
+        <div class="cv cv1"></div>
+        <div class="cv cv2"></div>
+        <div class="cv cv3"></div>
+        <div class="cv cv4"></div>
+        <div class="cv cv5"><div class="cv5-text">No hidden<br />costs</div></div>
+        <div class="cv cv6"></div>
+        <div class="cv cv7"></div>
+        <div class="cv cv8"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<div class="process-wrap" id="process">
+  <div class="process-inner">
+    <div class="section-header reveal">
+      <div>
+        <p class="eyebrow" style="color:var(--orange)">How It Works</p>
+        <h2 class="section-h2" style="color:white">Our dilapidations<br /><em style="color:var(--orange)">process</em></h2>
+      </div>
+    </div>
+
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-number">01</div>
+        <div class="step-title">Review & Assessment</div>
+        <p class="step-desc">You share your Schedule of Dilapidations with us. We carefully review it alongside lease terms and conduct a property inspection if required — confirming the validity of items listed and identifying the most cost-effective approach.</p>
+      </div>
+      <div class="process-step reveal d1">
+        <div class="step-number">02</div>
+        <div class="step-title">Scope & Cost Proposal</div>
+        <p class="step-desc">We prepare a detailed scope of works and a transparent cost proposal covering all repairs, strip-out, and reinstatement needed to comply with lease obligations. Clear costings help avoid disputes and ensure everyone knows exactly what to expect.</p>
+      </div>
+      <div class="process-step reveal d2">
+        <div class="step-number">03</div>
+        <div class="step-title">Implementation & Handover</div>
+        <p class="step-desc">We manage the entire works — from strip-out and repairs to full reinstatement. Our team prioritises quality, safety, and minimal disruption, delivering a compliant finish that allows landlords to re-let quickly or tenants to exit without surprises.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY CHOOSE US -->
+<div class="why-wrap" id="why-choose">
+  <div class="why-inner">
+    <div class="section-header reveal">
+      <div>
+        <p class="eyebrow" style="color:var(--purple)">Why Renova UK</p>
+        <h2 class="section-h2">Why businesses choose us<br /><em>for dilapidations</em></h2>
+      </div>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-bar"></div>
+        <div class="why-num">01</div>
+        <div class="why-title">Decades of experience</div>
+        <p class="why-desc">Extensive experience in commercial refurbishment and dilapidations projects of all sizes, from single floors to multi-site programmes.</p>
+      </div>
+      <div class="why-card reveal d1">
+        <div class="why-bar"></div>
+        <div class="why-num">02</div>
+        <div class="why-title">Full-service delivery</div>
+        <p class="why-desc">Our team handles the entire process from survey through to handover, saving you time, stress, and the cost of co-ordinating multiple contractors.</p>
+      </div>
+      <div class="why-card reveal d2">
+        <div class="why-bar"></div>
+        <div class="why-num">03</div>
+        <div class="why-title">Collaborative approach</div>
+        <p class="why-desc">We work closely with landlords, tenants, and chartered surveyors — maintaining open communication and a professional relationship throughout.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-bar"></div>
+        <div class="why-num">04</div>
+        <div class="why-title">Health, safety & compliance</div>
+        <p class="why-desc">CHAS accredited and fully committed to health, safety, and regulatory compliance on every project we undertake.</p>
+      </div>
+      <div class="why-card reveal d1">
+        <div class="why-bar"></div>
+        <div class="why-num">05</div>
+        <div class="why-title">Transparent pricing</div>
+        <p class="why-desc">Competitive, fully itemised quotations with no hidden costs — so you have complete confidence in the budget from day one.</p>
+      </div>
+      <div class="why-card reveal d2">
+        <div class="why-bar"></div>
+        <div class="why-num">06</div>
+        <div class="why-title">NAFDI membership</div>
+        <p class="why-desc">Recognised specialists in commercial dilapidations — NAFDI membership demonstrates our commitment to industry standards and best practice.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BENEFITS -->
+<div class="benefits-wrap" id="benefits">
+  <div class="benefits-inner">
+    <div class="section-header reveal">
+      <div>
+        <p class="eyebrow" style="color:var(--red)">Real Value</p>
+        <h2 class="section-h2">Benefits of managing<br /><em>dilapidations properly</em></h2>
+      </div>
+    </div>
+
+    <div class="benefits-strip">
+      <div class="benefit-item reveal">
+        <div class="benefit-bar"></div>
+        <span class="benefit-icon">💷</span>
+        <div class="benefit-title">Cost Certainty</div>
+        <p class="benefit-desc">Avoid unexpected repair bills and inflated landlord claims with precise surveys and transparent pricing.</p>
+      </div>
+      <div class="benefit-item reveal d1">
+        <div class="benefit-bar"></div>
+        <span class="benefit-icon">⚡</span>
+        <div class="benefit-title">Faster Handovers</div>
+        <p class="benefit-desc">Spaces ready for new tenants or swift exits — reducing void periods and protecting landlord income.</p>
+      </div>
+      <div class="benefit-item reveal d2">
+        <div class="benefit-bar"></div>
+        <span class="benefit-icon">🤝</span>
+        <div class="benefit-title">Reduced Disputes</div>
+        <p class="benefit-desc">Clear scope, accurate surveys, and expert management mean fewer disagreements and a smoother process for all parties.</p>
+      </div>
+      <div class="benefit-item reveal d3">
+        <div class="benefit-bar"></div>
+        <span class="benefit-icon">🛡️</span>
+        <div class="benefit-title">Peace of Mind</div>
+        <p class="benefit-desc">Know your obligations are fully met and legal risks are minimised — with a trusted partner managing every detail.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BANNER -->
+<div class="cta-wrap reveal">
+  <div class="cta-card">
+    <div class="cta-deco">
+      <div class="ctad" style="height:60%;width:10px"></div>
+      <div class="ctad" style="height:85%;width:10px"></div>
+      <div class="ctad" style="height:100%;width:10px"></div>
+      <div class="ctad" style="height:70%;width:10px"></div>
+      <div class="ctad" style="height:50%;width:10px"></div>
+      <div class="ctad" style="height:90%;width:10px"></div>
+    </div>
+    <div class="cta-text">
+      <h2>Let's resolve your dilapidations smoothly</h2>
+      <p>Whether you're a tenant planning your lease exit or a landlord preparing your property for re-letting, our team is ready to help with expert advice, clear costs, and peace of mind.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="#contact" class="btn-white">Book a Consultation</a>
+      <a href="tel:02033939600" class="btn-ghost">020 3393 9600</a>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-wrap" id="faq">
+  <div class="faq-inner">
+    <div class="section-header reveal">
+      <div>
+        <p class="eyebrow" style="color:var(--purple)">Common Questions</p>
+        <h2 class="section-h2">Frequently asked<br /><em>questions</em></h2>
+      </div>
+    </div>
+
+    <div class="faq-grid reveal">
+      <div class="faq-item">
+        <div class="faq-q">How long does an office dilapidations project take?</div>
+        <p class="faq-a">Timelines depend on the scale of works required and the terms of your lease. Simple dilapidation works might be completed in a few days or weeks, while larger reinstatement projects can take longer. We'll always provide a clear programme so you know what to expect.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What's included in office dilapidation works?</div>
+        <p class="faq-a">Dilapidation works typically include strip-out of tenant installations, structural and cosmetic repairs, reinstatement of partitions and finishes, redecoration, and any other works specified in your schedule of dilapidations and lease agreement.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Who is responsible for paying for dilapidation works?</div>
+        <p class="faq-a">Responsibility is defined by your lease. Generally, tenants are responsible for returning the space to the condition required under the lease terms. However, the extent of liability can often be negotiated — and our transparent process helps establish a fair, agreed scope from the outset.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do you work with chartered surveyors?</div>
+        <p class="faq-a">Yes — we collaborate closely with chartered surveyors throughout the process. We can work from an existing schedule of dilapidations or assist in reviewing and scoping works prior to a formal schedule being issued.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-wrap" id="contact">
+  <div class="contact-grid">
+    <div class="contact-main reveal">
+      <p class="eyebrow" style="color:var(--purple)">Get In Touch</p>
+      <h2 class="section-h2" style="margin-bottom:16px">Ready to tackle your<br /><em>dilapidations?</em></h2>
+      <p class="contact-desc">From reviewing your schedule of dilapidations to delivering quality reinstatement works, Renova Projects UK is your trusted partner for smooth, cost-effective lease handovers across the UK.</p>
+      <div class="contact-btns">
+        <a href="tel:02033939600" class="btn-dark">Call 020 3393 9600</a>
+        <a href="/cdn-cgi/l/email-protection#523d34343b31371220373c3d243327397c313d3f" class="btn-light">Email Us</a>
+      </div>
+    </div>
+
+    <div class="contact-side reveal d1">
+      <div class="contact-detail-card">
+        <div class="cdc-icon" style="background:rgba(200,64,192,0.1)">📞</div>
+        <div>
+          <div class="cdc-label">Phone</div>
+          <div class="cdc-value"><a href="tel:02033939600">020 3393 9600</a></div>
+        </div>
+      </div>
+      <div class="contact-detail-card">
+        <div class="cdc-icon" style="background:rgba(245,166,35,0.1)">✉️</div>
+        <div>
+          <div class="cdc-label">Email</div>
+          <div class="cdc-value"><a href="/cdn-cgi/l/email-protection#5f303939363c3a1f2d3a3130293e2a34713c3032"><span class="__cf_email__" data-cfemail="046b62626d67614476616a6b7265716f2a676b69">[email&#160;protected]</span></a></div>
+        </div>
+      </div>
+      <div class="contact-detail-card">
+        <div class="cdc-icon" style="background:rgba(240,58,47,0.1)">📍</div>
+        <div>
+          <div class="cdc-label">Office</div>
+          <div class="cdc-value">Genesis House, Westerham, Kent TN16 1AH</div>
+        </div>
+      </div>
+      <div class="contact-detail-card">
+        <div class="cdc-icon" style="background:rgba(200,64,192,0.08)">🗺️</div>
+        <div>
+          <div class="cdc-label">Coverage</div>
+          <div class="cdc-value">London · Kent · Surrey · Essex · South East</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="logo-bars" style="height:22px">
+        <div class="b"></div><div class="b"></div><div class="b"></div>
+        <div class="b"></div><div class="b"></div><div class="b"></div>
+        <div class="b"></div>
+      </div>
+      <span class="logo-text">Renova <span>UK</span></span>
+    </div>
+
+    <ul class="footer-links">
+      <li><a href="/">Home</a></li>
+          <li class="nav-has-dropdown">
+      <button class="nav-dropdown-toggle">
+        Services <span class="nav-dropdown-chevron">▼</span>
+      </button>
+      <div class="nav-dropdown">
+        <a href="/office-refurbishment.html" class="nav-dropdown-item">
+          <div class="nav-dropdown-icon" style="background:rgba(59,168,245,0.1)">🏗️</div>
+          <div class="nav-dropdown-label">
+            <span>Office Refurbishment</span>
+            <small>Fit-outs &amp; workspace upgrades</small>
+          </div>
+        </a>
+        <a href="/office-dilapidations.html" class="nav-dropdown-item">
+          <div class="nav-dropdown-icon" style="background:rgba(200,64,192,0.1)">📋</div>
+          <div class="nav-dropdown-label">
+            <span>Office Dilapidations</span>
+            <small>Lease-end works &amp; reinstatement</small>
+          </div>
+        </a>
+        <div class="nav-dropdown-divider"></div>
+        <a href="/services" class="nav-dropdown-item">
+          <div class="nav-dropdown-icon" style="background:rgba(46,207,180,0.1)">🔧</div>
+          <div class="nav-dropdown-label">
+            <span>All Services</span>
+            <small>Maintenance, repairs &amp; more</small>
+          </div>
+        </a>
+      </div>
+    </li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/contact-us">Contact</a></li>
+      <li><a href="/faqs">FAQs</a></li>
+      <li><a href="/health-and-safety-policy">Health &amp; Safety</a></li>
+      <li><a href="/environmental-policy">Environmental Policy</a></li>
+    </ul>
+
+    <span class="footer-copy">© 2026 Renova Projects UK Ltd</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  const nav = document.querySelector('nav');
+  const burger = document.querySelector('.nav-burger');
+  const mobile = document.getElementById('navMobile');
+
+  function closeNav(){
+    nav.classList.remove('nav-open');
+    burger?.setAttribute('aria-expanded','false');
+    burger?.setAttribute('aria-label','Open menu');
+  }
+
+  burger?.addEventListener('click',()=>{
+    const isOpen = nav.classList.toggle('nav-open');
+    burger.setAttribute('aria-expanded',String(isOpen));
+    burger.setAttribute('aria-label',isOpen?'Close menu':'Open menu');
+  });
+
+  mobile?.querySelectorAll('a').forEach(a => 

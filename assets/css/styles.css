@@ -1,0 +1,416 @@
+    /* ── NAV ─────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      width: calc(100% - 64px);
+      max-width: 1280px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 4px 32px rgba(15, 25, 35, 0.08), 0 1px 4px rgba(15, 25, 35, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+    }
+
+    .nav-logo-img {
+      height: 48px;
+      width: auto;
+      display: block;
+    }
+
+/* ── Services dropdown (blog-style) ───────────────────────── */
+
+.nav-has-dropdown{
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* make the button look like your existing nav links */
+.nav-dropdown-toggle{
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--mid);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+
+  padding: 8px 14px;
+  border-radius: 100px;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  transition: background 0.2s, color 0.2s;
+  
+}
+
+.nav-dropdown-toggle:hover{
+  background: var(--bg);
+  color: var(--near-black);
+  
+}
+
+.nav-dropdown-chevron{
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+/* dropdown panel */
+/* dropdown panel */
+.nav-dropdown{
+  position: absolute;
+  top: calc(100% - 6px);   /* ✅ was + 10px (this caused the gap) */
+  left: 0;
+
+  width: 320px;
+  padding: 10px;
+
+  background: rgba(255,255,255,0.98);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  box-shadow: 0 22px 60px rgba(0,0,0,0.12);
+
+  /* animated show/hide */
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+
+  z-index: 9999;
+}
+
+/* ✅ invisible hover bridge to stop flicker */
+.nav-dropdown::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:-12px;
+  height:12px;
+}
+
+/* show dropdown */
+.nav-has-dropdown:hover .nav-dropdown,
+.nav-has-dropdown:focus-within .nav-dropdown{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* dropdown card items */
+.nav-dropdown-item{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 10px;
+  border-radius: 12px;
+  text-decoration: none;
+
+  transition: background 0.2s;
+}
+
+.nav-dropdown-item:hover{
+  background: var(--bg);
+}
+
+.nav-dropdown-icon{
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.nav-dropdown-label span{
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--near-black);
+  line-height: 1.2;
+}
+
+.nav-dropdown-label small{
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--mid);
+  margin-top: 2px;
+}
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 2.5px;
+      height: 26px;
+    }
+
+    .logo-bars .b {
+      width: 4px;
+      border-radius: 2px 2px 0 0;
+      animation: barBounce 3s ease-in-out infinite;
+    }
+
+    .logo-bars .b:nth-child(1) {
+      background: var(--yellow);
+      height: 55%;
+      animation-delay: 0s;
+    }
+
+    .logo-bars .b:nth-child(2) {
+      background: var(--orange);
+      height: 80%;
+      animation-delay: 0.1s;
+    }
+
+    .logo-bars .b:nth-child(3) {
+      background: var(--red);
+      height: 100%;
+      animation-delay: 0.2s;
+    }
+
+    .logo-bars .b:nth-child(4) {
+      background: var(--purple);
+      height: 68%;
+      animation-delay: 0.3s;
+    }
+
+    .logo-bars .b:nth-child(5) {
+      background: var(--teal);
+      height: 48%;
+      animation-delay: 0.4s;
+    }
+
+    .logo-bars .b:nth-child(6) {
+      background: var(--blue);
+      height: 88%;
+      animation-delay: 0.5s;
+    }
+
+    .logo-bars .b:nth-child(7) {
+      background: var(--green);
+      height: 62%;
+      animation-delay: 0.6s;
+    }
+
+    @keyframes barBounce {
+
+      0%,
+      100% {
+        transform: scaleY(1);
+      }
+
+      50% {
+        transform: scaleY(0.8);
+      }
+    }
+
+    .logo-text {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: -0.03em;
+      color: var(--near-black);
+    }
+
+    .logo-text span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  align-items: center;   /* keeps items vertically aligned */
+}
+
+.nav-links li {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a{
+  display: flex;
+  align-items: center;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--mid);
+  text-decoration: none;
+
+  padding: 8px 14px;     /* normal pill height */
+  border-radius: 100px;
+  transition: background 0.2s, color 0.2s;
+}
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-phone {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--near-black);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 100px;
+      border: 1.5px solid var(--rule);
+      transition: border-color 0.2s;
+    }
+
+    .nav-phone:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .nav-cta {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--white);
+      background: var(--near-black);
+      padding: 10px 22px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.15s;
+    }
+
+    .nav-cta:hover {
+      background: var(--blue);
+      transform: translateY(-1px);
+    }
+
+ 
+
+    /* Mobile nav (hamburger) */
+    .nav-burger {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1.5px solid var(--rule);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .nav-burger:hover {
+      border-color: var(--blue);
+      transform: translateY(-1px);
+    }
+
+    .nav-burger span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--near-black);
+      border-radius: 2px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    nav.nav-open .nav-burger span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    nav.nav-open .nav-burger span:nth-child(2) {
+      opacity: 0;
+    }
+
+    nav.nav-open .nav-burger span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .nav-mobile {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 24px 56px rgba(15, 25, 35, 0.12), 0 4px 12px rgba(15, 25, 35, 0.08);
+      padding: 14px;
+    }
+
+    nav.nav-open .nav-mobile {
+      display: block;
+    }
+
+    .nav-mobile a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      text-decoration: none;
+      color: var(--near-black);
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .nav-mobile a small {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--mid);
+    }
+
+    .nav-mobile a:hover {
+      background: var(--bg);
+    }
+
+    .nav-mobile .nav-mobile-cta {
+      margin-top: 10px;
+      background: var(--near-black);
+      color: var(--white);
+    }
+
+    .nav-mobile .nav-mobile-cta small {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .nav-mobile .nav-mobile-cta:hover {
+      background: var(--blue);
+    }
+
+    .nav-mobile .nav-mobile-phone {
+      border: 1.5px solid var(--rule);
+    }
+
+    /* Mobile services sublinks */
+    .nav-mobile-sub {
+      margin: 6px 0 10px 0;
+      padding-left: 10px;
+      border-left: 2px solid rgba(15, 25, 35, 0.08);
+    }
+
+    .nav-mobile-sub a {
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 10px 12px;
+    }

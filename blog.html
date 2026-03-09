@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blog — Renova Projects UK</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/css/styles.css" />
+<style>
+/* =============================================================
+   BLOG INDEX PAGE — page-specific styles
+   Shared styles (nav, buttons, hero, footer, etc.) → styles.css
+   ============================================================= */
+
+/* ── Hero min-height override ── */
+.hero { min-height: 68vh; }
+
+/* ── Hero bar colours (yellow / orange theme) ── */
+.h-bar:nth-child(1)  { background: var(--yellow); height: 45%; }
+.h-bar:nth-child(2)  { background: var(--orange); height: 68%; }
+.h-bar:nth-child(3)  { background: var(--yellow); height: 90%; }
+.h-bar:nth-child(4)  { background: var(--orange); height: 55%; }
+.h-bar:nth-child(5)  { background: var(--yellow); height: 75%; }
+.h-bar:nth-child(6)  { background: var(--orange); height:100%; }
+.h-bar:nth-child(7)  { background: var(--yellow); height: 60%; }
+.h-bar:nth-child(8)  { background: var(--orange); height: 40%; }
+.h-bar:nth-child(9)  { background: var(--yellow); height: 82%; }
+.h-bar:nth-child(10) { background: var(--orange); height: 50%; }
+.h-bar:nth-child(11) { background: var(--yellow); height: 70%; }
+.h-bar:nth-child(12) { background: var(--orange); height: 95%; }
+
+/* ── Filter bar ── */
+.filter-wrap  { background: var(--white); padding: 20px 32px; border-bottom: 1px solid var(--rule); position: sticky; top: 70px; z-index: 100; }
+.filter-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.filter-label { font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--mid); margin-right: 6px; white-space: nowrap; }
+.filter-btn   { font-size: .75rem; font-weight: 700; padding: 8px 18px; border-radius: 100px; border: 1.5px solid var(--rule); background: transparent; color: var(--mid); cursor: pointer; transition: all .2s; white-space: nowrap; }
+.filter-btn:hover  { border-color: var(--orange); color: var(--orange); }
+.filter-btn.active { background: var(--near-black); color: white; border-color: var(--near-black); }
+
+/* ── Blog layout wrapper ── */
+.blog-wrap { padding: 48px 32px 80px; max-width: 1280px; margin: 0 auto; }
+
+/* ── Featured post (large 2-column card) ── */
+.post-featured { display: grid; grid-template-columns: 1fr 1fr; border-radius: var(--radius-xl); overflow: hidden; background: var(--white); box-shadow: 0 4px 24px rgba(15,25,35,0.06); margin-bottom: 20px; text-decoration: none; transition: transform .3s ease, box-shadow .3s ease; }
+.post-featured:hover { transform: translateY(-5px); box-shadow: 0 28px 64px rgba(15,25,35,0.12); }
+
+.post-featured-visual { position: relative; min-height: 420px; overflow: hidden; }
+.feat-deco { position: absolute; bottom: 0; right: 0; display: flex; align-items: flex-end; gap: 6px; padding: 0 18px; height: 60%; opacity: .14; pointer-events: none; }
+.fd { border-radius: 6px 6px 0 0; background: white; }
+.feat-category-badge { position: absolute; top: 24px; left: 24px; font-size: .62rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: white; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); padding: 6px 14px; border-radius: 100px; backdrop-filter: blur(6px); }
+.feat-featured-badge { position: absolute; top: 24px; right: 24px; font-size: .62rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--orange); background: rgba(255,215,0,.15); border: 1px solid rgba(255,165,0,.35); padding: 6px 14px; border-radius: 100px; }
+.feat-num { position: absolute; bottom: 24px; left: 28px; font-family: 'Playfair Display', serif; font-size: 5rem; font-weight: 700; color: white; opacity: .08; line-height: 1; user-select: none; }
+
+.post-featured-content { padding: 48px 44px; display: flex; flex-direction: column; justify-content: center; }
+.post-meta  { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.post-cat   { font-size: .65rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; }
+.post-read  { font-size: .7rem; font-weight: 600; color: var(--mid); }
+.post-dot   { width: 3px; height: 3px; border-radius: 50%; background: var(--light); }
+.post-title { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem,2.2vw,2rem); font-weight: 700; line-height: 1.2; letter-spacing: -.01em; color: var(--near-black); margin-bottom: 16px; }
+.post-featured:hover .post-title { color: var(--orange); transition: color .2s; }
+.post-excerpt { font-size: .85rem; line-height: 1.85; color: var(--mid); margin-bottom: 28px; }
+.post-arrow { display: inline-flex; align-items: center; gap: 8px; font-size: .8rem; font-weight: 700; color: var(--orange); transition: gap .2s; }
+.post-featured:hover .post-arrow { gap: 14px; }
+
+/* ── Post grid cards ── */
+.post-grid   { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 20px; }
+.post-grid-2 { grid-template-columns: repeat(2,1fr); }
+
+.post-card { background: var(--white); border-radius: var(--radius-xl); overflow: hidden; text-decoration: none; display: flex; flex-direction: column; border: 1.5px solid transparent; box-shadow: 0 2px 12px rgba(15,25,35,0.05); transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease; }
+.post-card:hover { transform: translateY(-6px); box-shadow: 0 24px 56px rgba(15,25,35,0.11); }
+.post-card[data-cat="dilapidations"]:hover { border-color: rgba(200,64,192,0.3); }
+.post-card[data-cat="refurbishment"]:hover { border-color: rgba(59,168,245,0.3); }
+.post-card[data-cat="maintenance"]:hover   { border-color: rgba(46,207,180,0.3); }
+.post-card[data-cat="fit-out"]:hover       { border-color: rgba(60,181,84,0.3); }
+
+.post-card-visual { height: 200px; position: relative; overflow: hidden; flex-shrink: 0; }
+.post-card-visual.large { height: 260px; }
+.post-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform .5s ease; }
+.post-card:hover .post-card-bg { transform: scale(1.05); }
+
+/* Gradient backgrounds per topic */
+.bg-dilap  { background: linear-gradient(160deg,#3a1060,var(--purple)); }
+.bg-refurb { background: linear-gradient(160deg,#1a3a5c,var(--blue)); }
+.bg-maint  { background: linear-gradient(160deg,#0e3a30,var(--teal)); }
+.bg-fitout { background: linear-gradient(160deg,#1a4a1a,var(--green)); }
+.bg-orange { background: linear-gradient(160deg,#2a1a06,var(--orange)); }
+
+.card-deco { position: absolute; bottom: 0; right: 0; display: flex; align-items: flex-end; gap: 4px; padding: 0 12px; height: 50%; opacity: .13; pointer-events: none; }
+.cd { border-radius: 4px 4px 0 0; background: white; }
+.card-cat-badge { position: absolute; top: 16px; left: 16px; font-size: .58rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: white; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); padding: 5px 11px; border-radius: 100px; backdrop-filter: blur(4px); }
+
+.post-card-body { padding: 24px 26px 28px; flex: 1; display: flex; flex-direction: column; }
+.card-meta  { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.card-read  { font-size: .68rem; font-weight: 600; color: var(--mid); }
+.card-dot   { width: 3px; height: 3px; border-radius: 50%; background: var(--light); }
+.card-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; line-height: 1.3; color: var(--near-black); margin-bottom: 10px; flex: 1; }
+.post-card:hover .card-title { color: var(--orange); transition: color .2s; }
+.card-excerpt { font-size: .78rem; line-height: 1.75; color: var(--mid); margin-bottom: 18px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+.card-link   { font-size: .72rem; font-weight: 700; color: var(--orange); display: inline-flex; align-items: center; gap: 5px; transition: gap .2s; }
+.post-card:hover .card-link { gap: 9px; }
+
+/* Category pill colour variants */
+.cat-dilap  { background: rgba(200,64,192,0.1);  color: var(--purple); }
+.cat-refurb { background: rgba(59,168,245,0.1);  color: var(--blue); }
+.cat-maint  { background: rgba(46,207,180,0.1);  color: var(--teal); }
+.cat-fitout { background: rgba(60,181,84,0.1);   color: var(--green); }
+
+/* ── Newsletter bar ── */
+.newsletter-wrap  { background: var(--near-black); padding: 64px 32px; margin: 20px 0; }
+.newsletter-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.nl-eyebrow { font-size: .68rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; }
+.nl-h   { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem,3vw,2.4rem); font-weight: 700; color: white; line-height: 1.2; margin-bottom: 12px; }
+.nl-h em { font-style: italic; font-weight: 400; color: var(--orange); }
+.nl-sub { font-size: .85rem; line-height: 1.8; color: rgba(255,255,255,.5); }
+.nl-form { display: flex; flex-direction: column; gap: 12px; }
+.nl-row  { display: flex; gap: 10px; }
+.nl-input { flex: 1; font-family: 'Manrope',sans-serif; font-size: .85rem; font-weight: 600; padding: 16px 20px; border-radius: 100px; background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.12); color: white; outline: none; transition: border-color .2s, background .2s; }
+.nl-input::placeholder { color: rgba(255,255,255,.3); }
+.nl-input:focus { border-color: rgba(245,166,35,.5); background: rgba(255,255,255,.12); }
+.nl-btn  { font-family: 'Manrope',sans-serif; font-size: .82rem; font-weight: 700; background: var(--orange); color: white; border: none; cursor: pointer; padding: 16px 28px; border-radius: 100px; white-space: nowrap; transition: background .2s, transform .15s; }
+.nl-btn:hover { background: #e8961a; transform: translateY(-1px); }
+.nl-note { font-size: .68rem; color: rgba(255,255,255,.25); }
+
+/* ── Topics section ── */
+.topics-wrap  { background: var(--white); padding: 64px 0; }
+.topics-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+.topics-grid  { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 32px; }
+.topic-card   { padding: 28px 24px; border-radius: var(--radius-lg); border: 1.5px solid var(--rule); background: var(--bg); text-align: center; text-decoration: none; transition: transform .22s, box-shadow .22s, border-color .22s; cursor: pointer; }
+.topic-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(15,25,35,0.09); }
+.topic-card:nth-child(1):hover { border-color: rgba(200,64,192,0.35); }
+.topic-card:nth-child(2):hover { border-color: rgba(59,168,245,0.35); }
+.topic-card:nth-child(3):hover { border-color: rgba(46,207,180,0.35); }
+.topic-card:nth-child(4):hover { border-color: rgba(60,181,84,0.35); }
+.topic-icon  { font-size: 1.6rem; display: block; margin-bottom: 12px; }
+.topic-name  { font-size: .82rem; font-weight: 700; color: var(--near-black); margin-bottom: 4px; }
+.topic-count { font-size: .7rem; font-weight: 600; color: var(--mid); }
+
+/* ── Responsive tweaks ── */
+@media (max-width: 1024px) {
+  .post-featured { grid-template-columns: 1fr; }
+  .post-featured-visual { min-height: 280px; }
+  .post-grid { grid-template-columns: repeat(2,1fr); }
+  .post-grid-2 { grid-template-columns: 1fr 1fr; }
+  .newsletter-inner { grid-template-columns: 1fr; gap: 40px; }
+  .topics-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 768px) {
+  .filter-wrap { padding: 14px 22px; top: 68px; }
+  .blog-wrap { padding: 28px 22px 60px; }
+  .post-grid { grid-template-columns: 1fr; }
+  .post-grid-2 { grid-template-columns: 1fr; }
+  .newsletter-wrap { padding: 48px 22px; }
+  .nl-row { flex-direction: column; }
+  .topics-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="logo-bars">
+      <div class="b"></div><div class="b"></div><div class="b"></div>
+      <div class="b"></div><div class="b"></div><div class="b"></div>
+      <div class="b"></div>
+    </div>
+    <span class="logo-text">Renova <span>UK</span></span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+        <li class="nav-has-dropdown">
+      <button class="nav-dropdown-toggle">
+        Services <span class="nav-dropdown-chevron">▼</span>
+      </button>
+      <div class="nav-dropdown">
+        <a href="/office-refurbishment.html" class="nav-dropdown-item">
+          <div class="nav-dropdown-icon" style="background:rgba(59,168,245,0.1)">🏗️</div>
+          <div class="nav-dropdown-label">
+            <span>Office Refurbishment</span>
+            <small>Fit-outs &amp; workspace upgrades</small>
+          </div>
+        </a>
+        <a href="/office-dilapidations.html" class="nav-dropdown-item">
+          <div class="nav-dropdown-icon" style="background:rgba(200,64,192,0.1)">📋</div>
+          <div class="nav-dropdown-label">
+            <span>Office Dilapidations</span>
+            <small>Lease-end works &amp; reinstatement</small>
+          </div>
+        </a>
+        <div class="nav-dropdown-divider"></div>
+        <a href="/services" class="nav-dropdown-item">
+          <div class="nav-dropdown-icon" style="background:rgba(46,207,180,0.1)">🔧</div>
+          <div class="nav-dropdown-label">
+            <span>All Services</span>
+            <small>Maintenance, repairs &amp; more</small>
+          </div>
+        </a>
+      </div>
+    </li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/blog" class="active">Blog</a></li>
+    <li><a href="/contact-us">Contact</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <a href="tel:02033939600" class="nav-phone">020 3393 9600</a>
+    <a href="#contact" class="nav-cta">Book Consultation</a>
+    <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="nav-mobile" id="navMobile">
+    <a href="/">Home <small>Back to site</small></a>
+        <div class="nav-mobile-services-heading">Services</div>
+    <a href="/office-refurbishment.html" class="nav-mobile-sub">🏗️ Office Refurbishment <small>Fit-outs</small></a>
+    <a href="/office-dilapidations.html" class="nav-mobile-sub">📋 Office Dilapidations <small>Lease-end works</small></a>
+    <a href="/services" class="nav-mobile-sub">🔧 All Services <small>Maintenance &amp; more</small></a>
+    <a href="/projects">Projects <small>Our work</small></a>
+    <a href="/blog">Blog <small>Insights</small></a>
+    <a href="/contact-us">Contact <small>Get in touch</small></a>
+    <a href="tel:02033939600" class="nav-mobile-phone">Call 020 3393 9600 <small>Tap to call</small></a>
+    <a href="#contact" class="nav-mobile-cta">Book Consultation <small>Fast response</small></a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bars-deco">
+    <div class="h-bar"></div><div class="h-bar"></div><div class="h-bar"></div>
+    <div class="h-bar"></div><div class="h-bar"></div><div class="h-bar"></div>
+    <div class="h-bar"></div><div class="h-bar"></div><div class="h-bar"></div>
+    <div class="h-bar"></div><div class="h-bar"></div><div class="h-bar"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-breadcrumb">
+      <a href="/">Home</a>
+      <span class="sep">›</span>
+      <span>Blog</span>
+    </div>
+
+    <div class="hero-pill">
+      <div class="hero-pill-dot">✦</div>
+      Expert Advice for Facilities Managers
+    </div>
+
+    <h1 class="hero-h1">
+      The Renova<br />
+      <span class="line2">Blog</span>
+    </h1>
+
+    <p class="hero-sub">
+      Straightforward advice for facilities managers, office tenants, and business owners — on refurbishments, maintenance, dilapidations, and everything in between.
+    </p>
+  </div>
+
+  <div class="hero-trust">
+    <span class="trust-label">Topics covered</span>
+    <div class="trust-divider"></div>
+    <div class="trust-topics">
+      <span class="trust-tag">Dilapidations</span>
+      <span class="trust-tag">Office Refurbishment</span>
+      <span class="trust-tag">Planned Maintenance</span>
+      <span class="trust-tag">Office Fit-Out</span>
+      <span class="trust-tag">Lease Advice</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="m-dot" style="background:var(--orange)"></span>Dilapidations Explained</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--blue)"></span>Refurbishment Costs</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--teal)"></span>PPM Schedules</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--green)"></span>Cat A vs Cat B Fit-Outs</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--purple)"></span>Lease-End Planning</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--orange)"></span>Fit-Out vs Refurbishment</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--blue)"></span>Building Maintenance</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--teal)"></span>Dilapidation Budgets</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--yellow)"></span>Refurbishment Timelines</span>
+    <!-- dupe -->
+    <span class="marquee-item"><span class="m-dot" style="background:var(--orange)"></span>Dilapidations Explained</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--blue)"></span>Refurbishment Costs</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--teal)"></span>PPM Schedules</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--green)"></span>Cat A vs Cat B Fit-Outs</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--purple)"></span>Lease-End Planning</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--orange)"></span>Fit-Out vs Refurbishment</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--blue)"></span>Building Maintenance</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--teal)"></span>Dilapidation Budgets</span>
+    <span class="marquee-item"><span class="m-dot" style="background:var(--yellow)"></span>Refurbishment Timelines</span>
+  </div>
+</div>
+
+<!-- FILTER -->
+<div class="filter-wrap">
+  <div class="filter-inner">
+    <span class="filter-label">Filter</span>
+    <button class="filter-btn active" data-filter="all">All Posts</button>
+    <button class="filter-btn" data-filter="dilapidations">Dilapidations</button>
+    <button class="filter-btn" data-filter="refurbishment">Refurbishment</button>
+    <button class="filter-btn" data-filter="maintenance">Maintenance</button>
+    <button class="filter-btn" data-filter="fit-out">Fit-Out</button>
+  </div>
+</div>
+
+<!-- BLOG POSTS -->
+<div class="blog-wrap">
+
+  <!-- FEATURED: What are dilapidations -->
+  <a href="/blogs/what-are-dilapidations-in-a-commercial-lease" class="post-featured reveal" data-cat="dilapidations">
+    <div class="post-featured-visual bg-dilap">
+      <div class="feat-deco">
+        <div class="fd" style="height:55%;width:12px"></div>
+        <div class="fd" style="height:80%;width:12px"></div>
+        <div class="fd" style="height:100%;width:12px"></div>
+        <div class="fd" style="height:68%;width:12px"></div>
+        <div class="fd" style="height:45%;width:12px"></div>
+        <div class="fd" style="height:90%;width:12px"></div>
+      </div>
+      <span class="feat-category-badge">Dilapidations</span>
+      <span class="feat-featured-badge">⭐ Featured</span>
+      <div class="feat-num">01</div>
+    </div>
+    <div class="post-featured-content">
+      <div class="post-meta">
+        <span class="post-cat cat-dilap">Dilapidations</span>
+        <span class="post-dot"></span>
+        <span class="post-read">5 min read</span>
+      </div>
+      <h2 class="post-title">What are dilapidations in a commercial lease?</h2>
+      <p class="post-excerpt">When a commercial lease comes to an end, one of the most common sources of confusion and potential conflict is dilapidations. Understanding your obligations — and your options — can save you significant time and money.</p>
+      <span class="post-arrow">Read article →</span>
+    </div>
+  </a>
+
+  <!-- ROW 1: 3-column grid -->
+  <div class="post-grid" style="margin-bottom:16px">
+
+    <a href="/blogs/how-much-does-an-office-refurbishment-cost" class="post-card reveal" data-cat="refurbishment">
+      <div class="post-card-visual large">
+        <div class="post-card-bg bg-refurb"></div>
+        <div class="card-deco">
+          <div class="cd" style="height:60%;width:8px"></div>
+          <div class="cd" style="height:90%;width:8px"></div>
+          <div class="cd" style="height:100%;width:8px"></div>
+          <div class="cd" style="height:70%;width:8px"></div>
+        </div>
+        <span class="card-cat-badge">Refurbishment</span>
+      </div>
+      <div class="post-card-body">
+        <div class="card-meta">
+          <span class="post-cat cat-refurb" style="font-size:0.6rem;padding:4px 10px">Refurbishment</span>
+          <span class="card-dot"></span>
+          <span class="card-read">6 min read</span>
+        </div>
+        <h3 class="card-title">How much does an office refurbishment cost in the UK?</h3>
+        <p class="card-excerpt">A typical medium office is around 300–500 m². Understanding the cost drivers helps you budget accurately from day one.</p>
+        <div class="card-bottom">
+          <span class="card-link">Read more →</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/blogs/what-is-planned-preventative-maintenance" class="post-card reveal d1" data-cat="maintenance">
+      <div class="post-card-visual large">
+        <div class="post-card-bg bg-maint"></div>
+        <div class="card-deco">
+          <div class="cd" style="height:65%;width:8px"></div>
+          <div class="cd" style="height:85%;width:8px"></div>
+          <div class="cd" style="height:100%;width:8px"></div>
+          <div class="cd" style="height:55%;width:8px"></div>
+        </div>
+        <span class="card-cat-badge">Maintenance</span>
+      </div>
+      <div class="post-card-body">
+        <div class="card-meta">
+          <span class="post-cat cat-maint" style="font-size:0.6rem;padding:4px 10px">Maintenance</span>
+          <span class="card-dot"></span>
+          <span class="card-read">4 min read</span>
+        </div>
+        <h3 class="card-title">What is Planned Preventative Maintenance (PPM)?</h3>
+        <p class="card-excerpt">PPM is the routine servicing, inspection, and upkeep of building systems before faults occur — keeping you compliant and costs predictable.</p>
+        <div class="card-bottom">
+          <span class="card-link">Read more →</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/blogs/difference-between-an-office-fit-out-and-an-office-refurbishment" class="post-card reveal d2" data-cat="fit-out">
+      <div class="post-card-visual large">
+        <div class="post-card-bg bg-fitout"></div>
+        <div class="card-deco">
+          <div class="cd" style="height:50%;width:8px"></div>
+          <div class="cd" style="height:80%;width:8px"></div>
+          <div class="cd" style="height:100%;width:8px"></div>
+          <div class="cd" style="height:65%;width:8px"></div>
+        </div>
+        <span class="card-cat-badge">Fit-Out</span>
+      </div>
+      <div class="post-card-body">
+        <div class="card-meta">
+          <span class="post-cat cat-fitout" style="font-size:0.6rem;padding:4px 10px">Fit-Out</span>
+          <span class="card-dot"></span>
+          <span class="card-read">5 min read</span>
+        </div>
+        <h3 class="card-title">What's the difference between an office fit-out and an office refurbishment?</h3>
+        <p class="card-excerpt">A fit-out creates a workplace from scratch. A refurbishment transforms an existing one. Knowing the distinction shapes your entire project approach.</p>
+        <div class="card-bottom">
+          <span class="card-link">Read more →</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ROW 2: 2-column grid -->
+  <div class="post-grid post-grid-2" style="margin-bottom:16px">
+
+    <a href="/blogs/how-much-should-i-budget-for-dilapidations-at-the-end-of-my-lease" class="post-card reveal" data-cat="dilapidations">
+      <div class="post-card-visual">
+        <div class="post-card-bg bg-dilap"></div>
+        <div class="card-deco">
+          <div class="cd" style="height:55%;width:8px"></div>
+          <div class="cd" style="height:90%;width:8px"></div>
+          <div class="cd" style="height:100%;width:8px"></div>
+          <div class="cd" style="height:72%;width:8px"></div>
+        </div>
+        <span class="card-cat-badge">Dilapidations</span>
+      </div>
+      <div class="post-card-body">
+        <div class="card-meta">
+          <span class="post-cat cat-dilap" style="font-size:0.6rem;padding:4px 10px">Dilapidations</span>
+          <span class="card-dot"></span>
+          <span class="card-read">6 min read</span>
+        </div>
+        <h3 class="card-title">How much should I budget for dilapidations at the end of my lease?</h3>
+        <p class="card-excerpt">Budgeting for lease-end dilapidations? Understand the cost factors, tenant repair obligations, and how to protect your business from inflated claims.</p>
+        <div class="card-bottom">
+          <span class="card-link">Read more →</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/blogs/what-are-the-benefits-of-implementing-a-ppm-schedule-for-a-building" class="post-card reveal d1" data-cat="maintenance">
+      <div class="post-card-visual">
+        <div class="post-card-bg bg-maint"></div>
+        <div class="card-deco">
+          <div class="cd" style="height:60%;width:8px"></div>
+          <div class="cd" style="height:85%;width:8px"></div>
+          <div class="cd" style="height:100%;width:8px"></div>
+          <div class="cd" style="height:50%;width:8px"></div>
+        </div>
+        <span class="card-cat-badge">Maintenance</span>
+      </div>
+      <div class="post-card-body">
+        <div class="card-meta">
+          <span class="post-cat cat-maint" style="font-size:0.6rem;padding:4px 10px">Maintenance</span>
+          <span class="card-dot"></span>
+          <span class="card-read">5 min read</span>
+        </div>
+        <h3 class="card-title">What are the benefits of implementing a PPM schedule for a building?</h3>
+        <p class="card-excerpt">Discover how planned preventative maintenance reduces downtime, controls costs, and keeps your building fully compliant year-round.</p>
+        <div class="card-bottom">
+          <span class="card-link">Read more →</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ROW 3: 3-column grid -->
+  <div class="post-grid" style="margin-bottom:0">
+
+    <a href="/blogs/whats-the-difference-between-cat-a-and-cat-b-fit-outs" class="post-card reveal" data-cat="fit-out">
+      <div class="post-card-visual">
+        <div class="post-card-bg bg-fitout"></div>
+        <div class="card-deco">
+          <div class="cd" style="height:55%;width:8px"></div>
+          <div class="cd" style="height:80%;width:8px"></div>
+          <div class="cd" style="height:100%;width:8px"></div>
+          <div class="cd" style="height:65%;width:8px"></div>
+        </div>
+        <span class="card-cat-badge">Fit-Out</span>
+      </div>
+      <div class="post-card-body">
+        <div class="card-meta">
+          <span class="post-cat cat-fitout" style="font-size:0.6rem;padding:4px 10px">Fit-Out</span>
+          <span class="card-dot"></span>
+          <span class="card-read">4 min read</span>
+        </div>
+        <h3 class="card-title">What's the difference between Cat A and Cat B fit-outs?</h3>
+        <p class="card-excerpt">If you're reviewing a lease or looking at office plans, understanding Cat A and Cat B is essential before you commit to anything.</p>
+        <div class="card-bottom">
+          <span class="card-link">Read more →</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/blogs/how-long-does-an-office-refurbishment-take" class="post-card reveal d1" data-cat="refurbishment">
+      <div class="post-card-visual">
+        <div class="post-card-bg bg-refurb"></div>
+        <div class="card-deco">
+          <div class="cd" style="height:70%;width:8px"></div>
+          <div class="cd" style="height:90%;width:8px"></div>
+          <div class="cd" style="height:100%;width:8px"></div>
+          <div class="cd" style="height:60%;width:8px"></div>
+        </div>
+        <span class="card-cat-badge">Refurbishment</span>
+      </div>
+      <div class="post-card-body">
+        <div class="card-meta">
+          <span class="post-cat cat-refurb" style="font-size:0.6rem;padding:4px 10px">Refurbishment</span>
+          <span class="card-dot"></span>
+          <span class="card-read">5 min read</span>
+        </div>
+        <h3 class="card-title">How long does an office refurbishment take?</h3>
+        <p class="card-excerpt">Planning and approvals, design, procurement, build — understanding the timeline from day one helps you plan your move and minimise disruption.</p>
+        <div class="card-bottom">
+          <span class="card-link">Read more →</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/blogs/end-of-lease-dilapidations-should-you-pay-the-bill-or-do-the-works" class="post-card reveal d2" data-cat="dilapidations">
+      <div class="post-card-visual">
+        <div class="post-card-bg bg-orange"></div>
+        <div class="card-deco">
+          <div class="cd" style="height:50%;width:8px"></div>
+          <div class="cd" style="height:85%;width:8px"></div>
+          <div class="cd" style="height:100%;width:8px"></div>
+          <div class="cd" style="height:68%;width:8px"></div>
+        </div>
+        <span class="card-cat-badge">Dilapidations</span>
+      </div>
+      <div class="post-card-body">
+        <div class="card-meta">
+          <span class="post-cat cat-dilap" style="font-size:0.6rem;padding:4px 10px">Dilapidations</span>
+          <span class="card-dot"></span>
+          <span class="card-read">5 min read</span>
+        </div>
+        <h3 class="card-title">End of lease dilapidations: should you pay the bill or do the works?</h3>
+        <p class="card-excerpt">When faced with a dilapidations bill from your landlord, you often have a choice. Here's how to decide which route makes more financial sense for your business.</p>
+        <div class="card-bottom">
+          <span class="card-link">Read more →</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+</div>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-wrap reveal">
+  <div class="newsletter-inner">
+    <div class="nl-content">
+      <div class="nl-eyebrow">Stay Informed</div>
+      <h2 class="nl-h">Practical building advice,<br /><em>straight to your inbox</em></h2>
+      <p class="nl-sub">Join facilities managers and business owners who get our latest insights on refurbishments, dilapidations, and building maintenance — no fluff, just useful content.</p>
+    </div>
+    <div class="nl-form">
+      <div class="nl-row">
+        <input class="nl-input" type="email" placeholder="your@email.com" />
+        <button class="nl-btn" type="button">Subscribe →</button>
+      </div>
+      <span class="nl-note">No spam. Unsubscribe any time. We respect your privacy.</span>
+    </div>
+  </div>
+</div>
+
+<!-- TOPICS -->
+<div class="topics-wrap">
+  <div class="topics-inner">
+    <div class="section-header reveal" style="margin-bottom:0">
+      <div>
+        <p class="eyebrow" style="color:var(--orange)">Browse by Topic</p>
+        <h2 class="section-h2">Find what you're<br /><em>looking for</em></h2>
+      </div>
+    </div>
+
+    <div class="topics-grid reveal">
+      <a class="topic-card" href="#" data-topic="dilapidations">
+        <span class="topic-icon">📋</span>
+        <div class="topic-name">Dilapidations</div>
+        <div class="topic-count">3 articles</div>
+      </a>
+      <a class="topic-card" href="#" data-topic="refurbishment">
+        <span class="topic-icon">🏗️</span>
+        <div class="topic-name">Office Refurbishment</div>
+        <div class="topic-count">2 articles</div>
+      </a>
+      <a class="topic-card" href="#" data-topic="maintenance">
+        <span class="topic-icon">🔧</span>
+        <div class="topic-name">Planned Maintenance</div>
+        <div class="topic-count">2 articles</div>
+      </a>
+      <a class="topic-card" href="#" data-topic="fit-out">
+        <span class="topic-icon">🛋️</span>
+        <div class="topic-name">Office Fit-Out</div>
+        <div class="topic-count">2 articles</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES CTA -->
+<div class="services-cta-wrap">
+  <div class="services-cta-inner">
+    <div class="section-header reveal" style="margin-bottom:40px">
+      <div>
+        <p class="eyebrow" style="color:var(--orange)">Ready to Act?</p>
+        <h2 class="section-h2">From advice to action —<br /><em>we're here to help</em></h2>
+      </div>
+    </div>
+
+    <div class="services-cta-grid">
+      <a href="/office-refurbishment" class="svc-cta-card card-blue reveal">
+        <div class="svc-cta-deco">
+          <div class="scd" style="height:55%"></div><div class="scd" style="height:85%"></div>
+          <div class="scd" style="height:100%"></div><div class="scd" style="height:65%"></div>
+        </div>
+        <span class="svc-cta-icon">🏗️</span>
+        <div class="svc-cta-title">Office Refurbishment</div>
+        <p class="svc-cta-desc">Transform your workspace into a modern, productive environment your team will love and clients will notice.</p>
+        <span class="svc-cta-link">Explore service →</span>
+      </a>
+
+      <a href="/office-dilapidations" class="svc-cta-card card-purple reveal d1">
+        <div class="svc-cta-deco">
+          <div class="scd" style="height:60%"></div><div class="scd" style="height:90%"></div>
+          <div class="scd" style="height:100%"></div><div class="scd" style="height:70%"></div>
+        </div>
+        <span class="svc-cta-icon">📋</span>
+        <div class="svc-cta-title">Office Dilapidations</div>
+        <p class="svc-cta-desc">Stress-free lease exit works — from schedule review to compliant handover, for landlords and tenants alike.</p>
+        <span class="svc-cta-link">Explore service →</span>
+      </a>
+
+      <a href="/services" class="svc-cta-card card-teal reveal d2">
+        <div class="svc-cta-deco">
+          <div class="scd" style="height:50%"></div><div class="scd" style="height:80%"></div>
+          <div class="scd" style="height:100%"></div><div class="scd" style="height:60%"></div>
+        </div>
+        <span class="svc-cta-icon">🔧</span>
+        <div class="svc-cta-title">Maintenance &amp; Repairs</div>
+        <p class="svc-cta-desc">Planned and reactive maintenance to keep your building safe, compliant, and performing all year round.</p>
+        <span class="svc-cta-link">Explore service →</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-wrap" id="contact">
+  <div class="contact-grid">
+    <div class="contact-main reveal">
+      <p class="eyebrow" style="color:var(--orange)">Get In Touch</p>
+      <h2 class="section-h2" style="margin-bottom:16px">Have a project<br /><em>in mind?</em></h2>
+      <p class="contact-desc">Whether you've been reading about dilapidations or planning an office refurbishment, our team is happy to give you practical, no-obligation advice. Get in touch today.</p>
+      <div class="contact-btns">
+        <a href="tel:02033939600" class="btn-dark">Call 020 3393 9600</a>
+        <a href="/cdn-cgi/l/email-protection#6d020b0b040e082d1f0803021b0c1806430e0200" class="btn-light">Email Us</a>
+      </div>
+    </div>
+
+    <div class="contact-side reveal d1">
+      <div class="contact-detail-card">
+        <div class="cdc-icon" style="background:rgba(245,166,35,0.1)">📞</div>
+        <div>
+          <div class="cdc-label">Phone</div>
+          <div class="cdc-value"><a href="tel:02033939600">020 3393 9600</a></div>
+        </div>
+      </div>
+      <div class="contact-detail-card">
+        <div class="cdc-icon" style="background:rgba(255,215,0,0.1)">✉️</div>
+        <div>
+          <div class="cdc-label">Email</div>
+          <div class="cdc-value"><a href="/cdn-cgi/l/email-protection#fb949d9d92989ebb899e95948d9a8e90d5989496"><span class="__cf_email__" data-cfemail="600f06060903052012050e0f1601150b4e030f0d">[email&#160;protected]</span></a></div>
+        </div>
+      </div>
+      <div class="contact-detail-card">
+        <div class="cdc-icon" style="background:rgba(245,166,35,0.08)">📍</div>
+        <div>
+          <div class="cdc-label">Office</div>
+          <div class="cdc-value">Genesis House, Westerham, Kent TN16 1AH</div>
+        </div>
+      </div>
+      <div class="contact-detail-card">
+        <div class="cdc-icon" style="background:rgba(245,166,35,0.08)">🗺️</div>
+        <div>
+          <div class="cdc-label">Coverage</div>
+          <div class="cdc-value">London · Kent · Surrey · Essex · South East</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="logo-bars" style="height:22px">
+        <div class="b"></div><div class="b"></div><div class="b"></div>
+        <div class="b"></div><div class="b"></div><div class="b"></div>
+        <div class="b"></div>
+      </div>
+      <span class="logo-text">Renova <span>UK</span></span>
+    </div>
+
+    <ul class="footer-links">
+      <li><a href="/">Home</a></li>
+          <li class="nav-has-dropdown">
+      <button class="nav-dropdown-toggle">
+        Services <span class="nav-dropdown-chevron">▼</span>
+      </button>
+      <div class="nav-dropdown">
+        <a href="/office-refurbishment.html" class="nav-dropdown-item">
+          <div class="nav-dropdown-icon" style="background:rgba(59,168,245,0.1)">🏗️</div>
+          <div class="nav-dropdown-label">
+            <span>Office Refurbishment</span>
+            <small>Fit-outs &amp; workspace upgrades</small>
+          </div>
+        </a>
+        <a href="/office-dilapidations.html" class="nav-dropdown-item">
+          <div class="nav-dropdown-icon" style="background:rgba(200,64,192,0.1)">📋</div>
+          <div class="nav-dropdown-label">
+            <span>Office Dilapidations</span>
+            <small>Lease-end works &amp; reinstatement</small>
+          </div>
+        </a>
+        <div class="nav-dropdown-divider"></div>
+        <a href="/services" class="nav-dropdown-item">
+          <div class="nav-dropdown-icon" style="background:rgba(46,207,180,0.1)">🔧</div>
+          <div class="nav-dropdown-label">
+            <span>All Services</span>
+            <small>Maintenance, repairs &amp; more</small>
+          </div>
+        </a>
+      </div>
+    </li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/contact-us">Contact</a></li>
+      <li><a href="/faqs">FAQs</a></li>
+      <li><a href="/health-and-safety-policy">Health &amp; Safety</a></li>
+    </ul>
+
+    <span class="footer-copy">© 2026 Renova Projects UK Ltd</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Mobile nav
+  const nav = document.querySelector('nav');
+  const burger = document.querySelector('.nav-burger');
+  const mobile = document.getElementById('navMobile');
+  function closeNav(){
+    nav.classList.remove('nav-open');
+    burger?.setAttribute('aria-expanded','false');
+    burger?.setAttribute('aria-label','Open menu');
+  }
+  burger?.addEventListener('click',()=>{
+    const isOpen = nav.classList.toggle('nav-open');
+    burger.setAttribute('aria-expanded',String(isOpen));
+    burger.setAttribute('aria-label',isOpen?'Close menu':'Open menu');
+  });
+  mobile?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>closeNav()));
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeNav(); });
+  document.addEventListener('click',e=>{ if(!nav.classList.contains('nav-open')) return; if(!nav.contains(e.target)) closeNav(); });
+
+  // Post filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const postCards  = document.querySelectorAll('[data-cat]');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      postCards.forEach(card => {
+        const match = filter === 'all' || card.dataset.cat === filter;
+        card.style.opacity = match ? '1' : '0.18';
+        card.style.transform = match ? '' : 'scale(0.97)';
+        card.style.pointerEvents = match ? '' : 'none';
+        card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      });
+    });
+  });
+
+  // Topic filter — clicking a topic card triggers filter bar
+  document.querySelectorAll('.topic-card').forEach(card => {
+    card.addEventListener('click', e => {
+      e.preventDefault();
+      const topic = card.dataset.topic;
+  
