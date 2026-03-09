@@ -225,7 +225,7 @@
     .ph-bar:nth-child(7)  { background: var(--red);    animation-delay: 0.9s; }
     .ph-bar:nth-child(8)  { background: var(--orange); animation-delay: 1.05s; }
     @keyframes heroBars { from { transform: scaleY(0.92); } to { transform: scaleY(1.04); } }
-    .page-hero-inner { position: relative; z-index: 2; max-width: 800px; padding: 56px 48px 64px; margin-left: max(48px, calc(50vw - 640px)); }
+    .page-hero-inner { position: relative; z-index: 2; max-width: 800px; padding: 56px 48px 64px; }
     .hero-pill { display: inline-flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid var(--rule); border-radius: 100px; padding: 8px 16px 8px 8px; font-size: 0.72rem; font-weight: 600; color: var(--mid); margin-bottom: 28px; width: fit-content; animation: fadeUp 0.7s ease both; }
     .hero-pill-dot { width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg, var(--red), var(--orange)); display: grid; place-items: center; font-size: 0.65rem; color: white; }
     .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5.5vw, 5rem); line-height: 1.05; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 24px; animation: fadeUp 0.7s ease 0.1s both; }
@@ -385,7 +385,7 @@
 
     /* ── RESPONSIVE ──────────────────────────────── */
     @media (max-width: 1024px) {
-      .page-hero-inner { margin-left: 48px; }
+      .page-hero-inner { }
       .intro-split { grid-template-columns: 1fr; gap: 40px; }
       .benefit-cards { grid-template-columns: 1fr 1fr; }
       .services-grid { grid-template-columns: 1fr 1fr; }
@@ -399,7 +399,7 @@
     }
     @media (max-width: 768px) {
       .page-hero { padding-top: 80px; }
-      .page-hero-inner { margin-left: 22px; padding: 40px 22px 56px; }
+      .page-hero-inner { padding: 40px 22px 56px; }
       .page-hero h1 { font-size: 2.4rem; }
       .hero-trust { padding: 18px 22px; gap: 18px; }
       .section { padding: 64px 22px; }
